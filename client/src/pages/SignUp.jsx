@@ -14,7 +14,6 @@ export default function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // You can modify the register function to accept an object
     register({ email, password, username, department, country, hobby });
   }
 
