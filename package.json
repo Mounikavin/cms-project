@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "cms-project",
   "version": "1.0.0",
   "description": "",
@@ -25,5 +26,10 @@
   },
   "devDependencies": {
     "vite": "^6.3.5"
+=======
+  "dependencies": {
+    "react-router": "^7.6.1",
+    "react-router-dom": "^7.6.1"
+>>>>>>> 3dfd927fc3d9b89f9f16d6b9d852bdbc1c9bc69c
   }
 }
