@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <>
-      <header className="bg-fuchsia-600 text-white text-4xl font-extrabold text-center py-6 shadow-xl tracking-wider uppercase drop-shadow-lg animate-fade-in border-b-4 border-fuchsia-800">
-        Heading
-      </header>
-
+     
       <section className="flex flex-col items-center justify-center min-h-[calc(100vh-96px)] bg-gradient-to-br from-rose-100 via-white to-sky-100 px-4 py-12 space-y-10 relative overflow-hidden">
 
         {/* Animated background glow */}
