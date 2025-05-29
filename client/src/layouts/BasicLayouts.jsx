@@ -12,7 +12,7 @@ function BasicLayouts() {
             📝
           </span>
           <Link to={"/home"} className="hover:underline" style={{ color: "#f4f0ec" }}>
-            Notes
+            Notes1
           </Link>
         </div>
 
