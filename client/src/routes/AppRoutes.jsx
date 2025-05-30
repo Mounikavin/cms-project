@@ -1,0 +1,18 @@
+// src/App.jsx
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './HomePage';
+import DeveloperPage from './DeveloperPage';
+
+const App = () => {
+  return (
+    <div className="min-h-screen bg-white p-4">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/developers" element={<DeveloperPage />} />
+      </Routes>
+    </div>
+  );
+};
+
+export default App;
