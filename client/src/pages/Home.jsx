@@ -1,30 +1,83 @@
-import React from 'react';
-import { Link } from "react-router-dom";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+
+function Home() {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   return (
-    <>
-     
-      <section className="flex flex-col items-center justify-center min-h-[calc(100vh-96px)] bg-gradient-to-br from-rose-100 via-white to-sky-100 px-4 py-12 space-y-10 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-[#f0e6d7] relative overflow-hidden">
+      {/* Diagonal Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-full h-full bg-[#f5d7c2] clip-diagonal" />
+      </div>
 
-        {/* Animated background glow */}
-        <div className="absolute w-[400px] h-[400px] bg-pink-300 opacity-30 blur-3xl rounded-full top-1/4 left-1/4 animate-pulse z-0"></div>
-
-        <div className="bg-white/80 backdrop-blur-lg border border-stone-200 rounded-3xl shadow-2xl p-8 max-w-xl w-full text-center hover:shadow-fuchsia-400 transition-shadow duration-500 transform hover:scale-[1.03] z-10">
-          <h2 className="text-3xl font-bold text-fuchsia-700 mb-4 drop-shadow-md tracking-tight animate-slide-in">
-            Welcome to My Application
-          </h2>
+      {/* Content Wrapper */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between max-w-7xl w-full p-10 gap-16">
+        
+        {/* Left Text Content */}
+        <div className="md:w-1/2 text-center md:text-left space-y-8">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#885133] leading-tight">
+            Celebrate Life’s <br /> Moments with Joy
+          </h1>
+          <p className="text-lg md:text-xl text-[#885133] tracking-wide leading-relaxed">
+            Discover vibrant festivals and cultural events near you. Dive into traditions, taste authentic cuisine, and create unforgettable memories with every celebration.
+          </p>
+          <button className="mt-2 inline-block bg-[#d62300] hover:bg-[#885133] text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+            Explore Events
+          </button>
+          <p className="text-sm text-[#885133] italic mt-4">
+            Your gateway to cultural diversity and festive joy.
+          </p>
         </div>
 
-        <button className="z-10 bg-fuchsia-600 text-white px-8 py-3 rounded-full shadow-lg text-lg font-semibold hover:bg-fuchsia-700 hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-300 animate-bounce group">
-          <Link to={'/login'} className="flex items-center gap-2">
-            <span className="transition-transform duration-300 group-hover:translate-x-1">Get Started</span>
-            <svg className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </button>
-      </section>
-    </>
+        {/* Right Image Grid */}
+        <div
+          className={`md:w-1/2 grid grid-cols-2 gap-6 transition-all duration-1000 ${
+            animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          {/* Image 1 */}
+          <img
+            src="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?cs=srgb&dl=pexels-vishnurnair-1105666.jpg&fm=jpg"
+            alt="Lantern Festival"
+            className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
+          />
+
+          {/* Image 2 */}
+          <img
+            src="https://images.pexels.com/photos/698907/pexels-photo-698907.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Traditional Dance"
+            className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
+          />
+
+          {/* Image 3 */}
+          <img
+            src="https://images.pexels.com/photos/450301/pexels-photo-450301.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Colorful Parade"
+            className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
+          />
+
+          {/* Image 4 */}
+          <img
+            src="https://media.istockphoto.com/id/179582649/photo/multi-colored-hand.jpg?s=612x612&w=0&k=20&c=UK4xyR47hl3m45MwG51R_8h4cAdXsqVFIuE30pzRiRs="
+            alt="Festival Music"
+            className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+      </div>
+
+      {/* Custom Clip Path Style */}
+      <style jsx>{`
+        .clip-diagonal {
+          clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
+        }
+      `}</style>
+    </div>
   );
 }
+
+export default Home;

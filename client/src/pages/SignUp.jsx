@@ -7,7 +7,6 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [department, setDepartment] = useState('');
   const [country, setCountry] = useState('');
   const [hobby, setHobby] = useState('');
   const { register } = useContext(AuthContext);
