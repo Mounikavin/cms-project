@@ -35,6 +35,11 @@ export default function About() {
           boxShadow: '0 8px 24px rgba(136, 81, 51, 0.15)',
           color: '#885133',
           fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1b2930f6a42474ca871018e0c132eecd14c4cf7c
           maxHeight: '600px',
           overflowY: 'auto',
           zIndex: 2,
