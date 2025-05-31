@@ -1,106 +1,99 @@
-import { useContext, useState } from 'react' 
-import { useNavigate } from 'react-router';
-import Swal from 'sweetalert2';
+import { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
+
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [department, setDepartment] = useState('');
   const [country, setCountry] = useState('');
   const [hobby, setHobby] = useState('');
   const { register } = useContext(AuthContext);
+
 
   function handleSubmit(event) {
     event.preventDefault();
     register({ email, password, username, department, country, hobby });
   }
 
+
   return (
-    <div className="flex items-center justify-center min-h-[80vh] bg-gray-100">
+    <div className="relative min-h-screen flex items-center justify-center font-sans overflow-hidden">
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg?auto=compress&cs=tinysrgb&w=600')",
+          filter: 'blur(1px) brightness(0.7)', // minimal blur
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      ></div>
+
+
+      {/* Transparent color overlay for warmth */}
+      <div
+        className="absolute inset-0 bg-[#885133]/40" // light warm overlay
+        style={{ zIndex: 1 }}
+      ></div>
+
+
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
+        className="relative z-10 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-12 max-w-lg w-full mx-4 space-y-6"
+        style={{ boxShadow: '0 20px 40px rgba(136, 81, 51, 0.4)' }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign up</h2>
+        <h2
+          className="text-4xl font-extrabold text-center"
+          style={{ color: '#885133', letterSpacing: '0.03em' }}
+        >
+          Create Account
+        </h2>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your username"
-          />
-        </div>
 
-        <div className="mb-4">
+        {[
+          { label: 'Username', type: 'text', value: username, setter: setUsername, placeholder: 'Enter your username' },
+          { label: 'Email', type: 'email', value: email, setter: setEmail, placeholder: 'Enter your email' },
+          { label: 'Department', type: 'text', value: department, setter: setDepartment, placeholder: 'Enter your department' },
+          { label: 'Country', type: 'text', value: country, setter: setCountry, placeholder: 'Enter your country' },
+          { label: 'Hobby', type: 'text', value: hobby, setter: setHobby, placeholder: 'Enter your hobby' },
+          { label: 'Password', type: 'password', value: password, setter: setPassword, placeholder: 'Enter your password' },
+        ].map(({ label, type, value, setter, placeholder }) => (
           <input
-            id="email"
-            type="email"
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            key={label}
+            type={type}
+            value={value}
+            onChange={e => setter(e.target.value)}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your email"
+            placeholder={placeholder}
+            className="w-full px-6 py-4 rounded-xl border border-[#d62300] placeholder-[#885133]/70 text-[#885133] text-base font-medium focus:outline-none focus:ring-4 focus:ring-[#d62300]/60 transition"
+            aria-label={label}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
           />
-        </div>
+        ))}
 
-        <div className="mb-4">
-          <input
-            type="text"
-            value={department}
-            onChange={e => setDepartment(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your department"
-          />
-        </div>
-
-        <div className="mb-4">
-          <input
-            type="text"
-            value={country}
-            onChange={e => setCountry(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your country"
-          />
-        </div>
-
-        <div className="mb-4">
-          <input
-            type="text"
-            value={hobby}
-            onChange={e => setHobby(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your hobby"
-          />
-        </div>
-
-        <div className="mb-6">
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your password"
-          />
-        </div>
 
         <button
-          type='submit'
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors font-semibold"
+          type="submit"
+          className="w-full py-4 rounded-full font-bold text-white text-lg shadow-lg transition-all duration-300"
+          style={{ backgroundColor: '#d62300' }}
+          onMouseEnter={e => {
+            e.target.style.backgroundColor = '#885133';
+            e.target.style.boxShadow = '0 10px 20px rgba(136, 81, 51, 0.6)';
+            e.target.style.transform = 'scale(1.05)';
+          }}
+          onMouseLeave={e => {
+            e.target.style.backgroundColor = '#d62300';
+            e.target.style.boxShadow = 'none';
+            e.target.style.transform = 'scale(1)';
+          }}
         >
-          create new account
+          Create New Account
         </button>
       </form>
     </div>
-  )
+  );
 }
