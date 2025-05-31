@@ -5,16 +5,16 @@ import './App.css'
 import Home from './pages/Home'
 import { AuthProvider } from './context/AuthContext'
 import AppRoutes from './routes/Approutes'
+import StorageContext, { StorageProvider } from './context/StorageContext'
+
 
 function App() {
 
-  return (
-    <>
-  <div>
-  <AuthProvider><AppRoutes></AppRoutes></AuthProvider>
-  </div>
-</>
 
+  return (
+    <AuthProvider>
+<AppRoutes></AppRoutes>
+</AuthProvider>
   )
 }
 export default App
