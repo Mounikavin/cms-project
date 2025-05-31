@@ -2,13 +2,16 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Home from './pages/Home'
+import { AuthProvider } from './context/AuthContext'
+import AppRoutes from './routes/Approutes'
 
 function App() {
 
   return (
     <>
   <div>
-    <h1>Hello from App!</h1>
+  <AuthProvider><AppRoutes></AppRoutes></AuthProvider>
   </div>
 </>
 

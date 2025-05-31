@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 
+
 function Home() {
   const [animate, setAnimate] = useState(false);
+
 
   useEffect(() => {
     setAnimate(true);
   }, []);
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f0e6d7] relative overflow-hidden">
@@ -13,10 +16,10 @@ function Home() {
       <div className="absolute inset-0 z-0">
         <div className="absolute w-full h-full bg-[#f5d7c2] clip-diagonal" />
       </div>
-
+ 
       {/* Content Wrapper */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between max-w-7xl w-full p-10 gap-16">
-        
+       
         {/* Left Text Content */}
         <div className="md:w-1/2 text-center md:text-left space-y-8">
           <h1 className="text-5xl md:text-6xl font-extrabold text-[#885133] leading-tight">
@@ -33,6 +36,7 @@ function Home() {
           </p>
         </div>
 
+
         {/* Right Image Grid */}
         <div
           className={`md:w-1/2 grid grid-cols-2 gap-6 transition-all duration-1000 ${
@@ -46,6 +50,7 @@ function Home() {
             className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
           />
 
+
           {/* Image 2 */}
           <img
             src="https://images.pexels.com/photos/698907/pexels-photo-698907.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -53,12 +58,14 @@ function Home() {
             className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
           />
 
+
           {/* Image 3 */}
           <img
             src="https://images.pexels.com/photos/450301/pexels-photo-450301.jpeg?auto=compress&cs=tinysrgb&w=600"
             alt="Colorful Parade"
             className="w-full h-[260px] rounded-2xl shadow-2xl object-cover transition-transform duration-500 hover:scale-105"
           />
+
 
           {/* Image 4 */}
           <img
@@ -69,6 +76,7 @@ function Home() {
         </div>
       </div>
 
+
       {/* Custom Clip Path Style */}
       <style jsx>{`
         .clip-diagonal {
@@ -78,5 +86,6 @@ function Home() {
     </div>
   );
 }
+
 
 export default Home;
