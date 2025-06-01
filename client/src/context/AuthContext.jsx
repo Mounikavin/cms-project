@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
       */
 
       // ✅ Redirect after login
-      navigate('/dashboard/intro');
+      navigate('/dashboard');
 
       // ✅ Show success alert
       Swal.fire({

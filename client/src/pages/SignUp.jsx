@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
-
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -10,49 +10,40 @@ export default function SignUp() {
   const [country, setCountry] = useState('');
   const [hobby, setHobby] = useState('');
   const { register } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    register({ email, password, username, department, country, hobby });
+    try {
+      await register({ email, password, username, department, country, hobby });
+      navigate('/dashboard'); // ✅ Redirect after successful registration
+    } catch (err) {
+      console.error('Registration failed:', err);
+    }
   }
-
 
   return (
     <div className="relative min-h-screen flex items-center justify-center font-sans overflow-hidden">
-      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg?auto=compress&cs=tinysrgb&w=600')",
-          filter: 'blur(1px) brightness(0.7)', // minimal blur
+          backgroundImage: "url('https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg?auto=compress&cs=tinysrgb&w=600')",
+          filter: 'blur(1px) brightness(0.7)',
           zIndex: 0,
         }}
         aria-hidden="true"
       ></div>
 
+      <div className="absolute inset-0 bg-[#885133]/40" style={{ zIndex: 1 }}></div>
 
-      {/* Transparent color overlay for warmth */}
-      <div
-        className="absolute inset-0 bg-[#885133]/40" // light warm overlay
-        style={{ zIndex: 1 }}
-      ></div>
-
-
-      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="relative z-10 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-12 max-w-lg w-full mx-4 space-y-6"
         style={{ boxShadow: '0 20px 40px rgba(136, 81, 51, 0.4)' }}
       >
-        <h2
-          className="text-4xl font-extrabold text-center"
-          style={{ color: '#885133', letterSpacing: '0.03em' }}
-        >
+        <h2 className="text-4xl font-extrabold text-center text-[#885133]" style={{ letterSpacing: '0.03em' }}>
           Create Account
         </h2>
-
 
         {[
           { label: 'Username', type: 'text', value: username, setter: setUsername, placeholder: 'Enter your username' },
@@ -74,7 +65,6 @@ export default function SignUp() {
             style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
           />
         ))}
-
 
         <button
           type="submit"
