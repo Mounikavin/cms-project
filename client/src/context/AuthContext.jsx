@@ -2,35 +2,38 @@ import { createContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
-
-// Replace this with your actual service
-// import userService from '../service/userService';
-
-
+// ✅ Create context
 const AuthContext = createContext(); 
 
-
+// ✅ Create provider component
 function AuthProvider({ children }) {
   const [userEmail, setUserEmail] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
 
-
+  // ✅ Simulated login function
   function login(email, password) {
     try {
-      // Fake login for now (replace with real userService)
-      // userService.authenticate(email, password);
+      // 🛑 This is a placeholder – no real authentication
+      // Replace with: userService.authenticate(email, password);
+
       setIsAuth(true);
       setUserEmail(email);
 
+      // ✅ Simulated log message instead of crashing import
+      console.log(`[Login] Simulated login by ${email}`);
 
-      // Log login history
+      // 🛑 Disabled until historyService is implemented
+      /*
       import('../service/historyService').then(({ default: historyService }) => {
         historyService.addHistory(email, 'login');
       });
+      */
 
-
+      // ✅ Redirect after login
       navigate('/dashboard/intro');
+
+      // ✅ Show success alert
       Swal.fire({
         title: 'Success',
         text: 'Login is successful',
@@ -45,10 +48,11 @@ function AuthProvider({ children }) {
     }
   }
 
-
+  // ✅ Logout function
   function logout() {
     setIsAuth(false);
     setUserEmail(null);
+
     Swal.fire({
       title: 'Success',
       text: 'Logout successful',
@@ -56,12 +60,14 @@ function AuthProvider({ children }) {
     });
   }
 
-
+  // ✅ Simulated register function
   function register(email, password) {
     try {
-      // userService.addUser(email, password);
+      // 🛑 Replace with real userService.addUser(email, password);
       setIsAuth(true);
+
       navigate('/dashboard/intro');
+
       Swal.fire({
         title: 'Success',
         text: 'Registration is successful',
@@ -76,7 +82,7 @@ function AuthProvider({ children }) {
     }
   }
 
-
+  // ✅ Provide values to context consumers
   return (
     <AuthContext.Provider value={{ login, logout, register, isAuth, userEmail }}>
       {children}
@@ -84,8 +90,6 @@ function AuthProvider({ children }) {
   );
 }
 
-
-export { AuthProvider };         // ✅ Named export
-export default AuthContext;      // ✅ Default export
-
-
+// ✅ Named export for provider, default export for context
+export { AuthProvider };
+export default AuthContext;
